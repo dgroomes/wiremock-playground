@@ -49,7 +49,7 @@ dependencies {
 }
 
 application {
-    mainClassName = "dgroomes.App"
+    mainClassName = "dgroomes.wiremock.App"
 }
 
 val test by tasks.getting(Test::class) {

@@ -1,4 +1,4 @@
-package dgroomes;
+package dgroomes.wiremock;
 
 import org.junit.jupiter.api.Test;
 

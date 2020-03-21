@@ -1,4 +1,4 @@
-package dgroomes;
+package dgroomes.wiremock;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import org.slf4j.Logger;
