@@ -8,3 +8,6 @@
  */
 
 rootProject.name = "wiremock-playground"
+
+include("programmatic",
+        "standalone")
