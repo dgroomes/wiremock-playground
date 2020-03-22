@@ -39,3 +39,8 @@ Instructions:
   threads keeping the process alive? Why does the `standalone` program not exhibit the same behavior but instead exits
   immediately upon a `Ctrl + C`? 
 * TODO add some stubs
+* Create a JDK Flight Recording for the `programmatic` program by setting `export PROGRAMMATIC_OPTS="-XX:StartFlightRecording,dumponexit=true"`
+  * After the program exits, the .jfr file will be captured. Visualize it using Mission Control <https://github.com/openjdk/jmc>
+  * Clone Mission Control and build it
+  * You must run it with a JDK 8 (and it must be installed at `/Library/Java/JavaVirtualMachines...` for some reason. I couldn't get an SDKMAN installed Java to work)
+    * E.g. `JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/ target/products/org.openjdk.jmc/macosx/cocoa/x86_64/JDK\ Mission\ Control.app/Contents/MacOS/jmc -vm $JAVA_HOME/bin`
