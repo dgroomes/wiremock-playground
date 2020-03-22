@@ -39,7 +39,15 @@ Instructions:
   threads keeping the process alive? Why does the `standalone` program not exhibit the same behavior but instead exits
   immediately upon a `Ctrl + C`? 
 * TODO add some stubs
-* Create a JDK Flight Recording for the `programmatic` program by setting `export PROGRAMMATIC_OPTS="-XX:StartFlightRecording,dumponexit=true"`
+* Create a JDK Flight Recording
+  * For the `programmatic` program: 
+    * Build the distribution with `./gradlew programmatic:installDist`
+    * Set the JRE options with `export PROGRAMMATIC_OPTS="-XX:StartFlightRecording,dumponexit=true"`
+    * Run the program with `programmatic/build/install/programmatic/bin/programmatic`
+  * For the `standalone` program:
+    * Build the distribution with `./gradlew standalone:installDist`
+    * Set the JRE options with `export STANDALONE_OPTS="-XX:StartFlightRecording,dumponexit=true"`
+    * Run the program with `standalone/build/install/standalone/bin/standalone`
   * After the program exits, the .jfr file will be captured. Visualize it using Mission Control <https://github.com/openjdk/jmc>
   * Clone Mission Control and build it
   * You must run it with a JDK 8 (and it must be installed at `/Library/Java/JavaVirtualMachines...` for some reason. I couldn't get an SDKMAN installed Java to work)

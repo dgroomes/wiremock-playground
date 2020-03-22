@@ -3,12 +3,22 @@ package dgroomes.wiremock;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.impl.SimpleLogger;
 
 import java.time.Duration;
+import java.util.Map;
 
 public class App {
 
-    private static final Logger log = LoggerFactory.getLogger(App.class);
+    private static final Logger log;
+
+    static {
+        var loggingProps = Map.of(
+                SimpleLogger.SHOW_DATE_TIME_KEY, "true",
+                SimpleLogger.DATE_TIME_FORMAT_KEY, "HH:mm:ss");
+        loggingProps.forEach(System::setProperty);
+        log = LoggerFactory.getLogger(App.class);
+    }
 
     public static void main(String[] args) throws InterruptedException {
         WireMockServer wireMockServer = new WireMockServer();
