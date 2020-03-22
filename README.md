@@ -1,4 +1,4 @@
-# wiremock-playground UNIMPLEMENTED 
+# wiremock-playground 
 
 Learning and exploring WireMock.
 
@@ -38,3 +38,4 @@ Instructions:
 * Why does the `programmatic` program take around 60 seconds to exit after the WireMock server is stopped? Are there
   threads keeping the process alive? Why does the `standalone` program not exhibit the same behavior but instead exits
   immediately upon a `Ctrl + C`? 
+* TODO add some stubs
