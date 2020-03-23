@@ -1,34 +1,33 @@
 package dgroomes.wiremock;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.impl.SimpleLogger;
 
 import java.time.Duration;
-import java.util.Map;
 
+/**
+ * Run a WireMock server
+ */
 public class App {
 
-    private static final Logger log;
-
-    static {
-        var loggingProps = Map.of(
-                SimpleLogger.SHOW_DATE_TIME_KEY, "true",
-                SimpleLogger.DATE_TIME_FORMAT_KEY, "HH:mm:ss");
-        loggingProps.forEach(System::setProperty);
-        log = LoggerFactory.getLogger(App.class);
-    }
+    private static final Logger log = LoggerFactory.getLogger(App.class);
+    public static final int SLEEP_SECONDS = 1;
 
     public static void main(String[] args) throws InterruptedException {
-        WireMockServer wireMockServer = new WireMockServer();
+        WireMockConfiguration options = WireMockUtil.shutdownGracefully(new WireMockConfiguration());
+        WireMockServer wireMockServer = new WireMockServer(options);
         log.info("Starting the WireMock server");
         wireMockServer.start();
-        var duration = Duration.ofSeconds(5);
+
+        var duration = Duration.ofSeconds(SLEEP_SECONDS);
         log.info("Sleeping for {}", duration);
         Thread.sleep(duration.toMillis());
+
         log.info("Stopping the WireMock server");
         wireMockServer.stop();
         log.info("The WireMock server is stopped");
     }
+
 }

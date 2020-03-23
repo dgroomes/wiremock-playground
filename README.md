@@ -35,11 +35,9 @@ Instructions:
 
 ## Notes
 
-* Why does the `programmatic` program take around 60 seconds to exit after the WireMock server is stopped? Are there
-  threads keeping the process alive? Why does the `standalone` program not exhibit the same behavior but instead exits
-  immediately upon a `Ctrl + C`? 
 * TODO add some stubs
 * Create a JDK Flight Recording
+  * (see `java` options at <https://docs.oracle.com/en/java/javase/14/docs/specs/man/java.html> and scroll down to `-XX:StartFlightRecording`)
   * For the `programmatic` program: 
     * Build the distribution with `./gradlew programmatic:installDist`
     * Set the JRE options with `export PROGRAMMATIC_OPTS="-XX:StartFlightRecording,dumponexit=true"`
@@ -52,3 +50,5 @@ Instructions:
   * Clone Mission Control and build it
   * You must run it with a JDK 8 (and it must be installed at `/Library/Java/JavaVirtualMachines...` for some reason. I couldn't get an SDKMAN installed Java to work)
     * E.g. `JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/ target/products/org.openjdk.jmc/macosx/cocoa/x86_64/JDK\ Mission\ Control.app/Contents/MacOS/jmc -vm $JAVA_HOME/bin`
+* Can we run WireMock on Graal? If Jetty can run on Graal, then WireMock should be pretty easy to run on Graal. See an 
+  example for running Jetty on Graal at <https://github.com/tipsy/javalin/issues/286>
