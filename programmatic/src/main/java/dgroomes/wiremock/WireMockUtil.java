@@ -7,7 +7,7 @@ import com.github.tomakehurst.wiremock.http.HttpServer;
 import com.github.tomakehurst.wiremock.http.StubRequestHandler;
 import com.github.tomakehurst.wiremock.jetty9.JettyHttpServerFactory;
 import com.github.tomakehurst.wiremock.jetty94.Jetty94HttpServer;
-import org.eclipse.jetty.server.Handler;
+import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.server.handler.StatisticsHandler;
 
 /**
@@ -37,8 +37,15 @@ public class WireMockUtil {
                 return new Jetty94HttpServer(options, adminRequestHandler, stubRequestHandler) {
 
                     @Override
-                    protected Handler[] extensionHandlers() {
-                        return new Handler[]{new StatisticsHandler()};
+                    protected HandlerCollection createHandler(Options options, AdminRequestHandler adminRequestHandler, StubRequestHandler stubRequestHandler) {
+                        var handlers = super.createHandler(options, adminRequestHandler, stubRequestHandler);
+                        var statisticsHandler = new StatisticsHandler();
+                        statisticsHandler.setHandler(handlers);
+                        // Unfortunately, the statisticsHandler needs to be wrapped in a HandlerCollection because the
+                        // super method must return the type "HandlerCollection", but really the method can afford to
+                        // return the more generic type "Handler". So we must accommodate the unnecessarily specific
+                        // type signature.
+                        return new HandlerCollection(statisticsHandler);
                     }
                 };
             }

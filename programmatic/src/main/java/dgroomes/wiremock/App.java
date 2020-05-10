@@ -13,7 +13,7 @@ import java.time.Duration;
 public class App {
 
     private static final Logger log = LoggerFactory.getLogger(App.class);
-    public static final int SLEEP_SECONDS = 1;
+    public static final int SLEEP_SECONDS = 5;
 
     public static void main(String[] args) throws InterruptedException {
         WireMockConfiguration options = WireMockUtil.shutdownGracefully(new WireMockConfiguration());
