@@ -6,20 +6,29 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
+import java.time.Instant;
 
 /**
- * Run a WireMock server
+ * Run a WireMock server programmatically from Java code
  */
-public class App {
+public class ProgrammaticMain {
 
-    private static final Logger log = LoggerFactory.getLogger(App.class);
+    private static final Logger log = LoggerFactory.getLogger(ProgrammaticMain.class);
     public static final int SLEEP_SECONDS = 5;
+    private static final int PORT = 8070;
 
     public static void main(String[] args) throws InterruptedException {
-        WireMockConfiguration options = WireMockUtil.shutdownGracefully(new WireMockConfiguration());
+        var start = Instant.now();
+        var options = new WireMockConfiguration()
+                .port(PORT);
+        WireMockUtil.configureStatistics(options);
         WireMockServer wireMockServer = new WireMockServer(options);
-        log.info("Starting the WireMock server");
+        log.debug("Starting the WireMock server");
         wireMockServer.start();
+        log.info("WireMock server started!");
+        var startDuration = Duration.between(start, Instant.now());
+        log.debug("Boot up time was {}", startDuration);
+        log.debug("View statistics at http://localhost:{}/stats/", PORT);
 
         var duration = Duration.ofSeconds(SLEEP_SECONDS);
         log.info("Sleeping for {}", duration);
