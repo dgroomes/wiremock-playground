@@ -1,0 +1,9 @@
+{
+  "request": {
+    "urlPathPattern": "/message(/?)",
+    "method": "GET"
+  },
+  "response": {
+    "body": "hello world!"
+  }
+}

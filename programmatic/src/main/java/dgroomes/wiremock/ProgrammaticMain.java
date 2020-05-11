@@ -14,14 +14,16 @@ import java.time.Instant;
 public class ProgrammaticMain {
 
     private static final Logger log = LoggerFactory.getLogger(ProgrammaticMain.class);
-    public static final int SLEEP_SECONDS = 5;
-    private static final int PORT = 8070;
+    private static final int SLEEP_SECONDS = 10;
+    private static final int PORT = 8080;
+    private static final String ROOT_DIR = "wiremock/scenarios/happy-path";
 
     public static void main(String[] args) throws InterruptedException {
         var start = Instant.now();
         var options = new WireMockConfiguration()
                 .port(PORT);
         WireMockUtil.configureStatistics(options);
+        WireMockUtil.configureRootDir(options, ROOT_DIR);
         WireMockServer wireMockServer = new WireMockServer(options);
         log.debug("Starting the WireMock server");
         wireMockServer.start();

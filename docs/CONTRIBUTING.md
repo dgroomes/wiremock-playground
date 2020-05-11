@@ -1,10 +1,9 @@
 # Contributing
 
-To contriubte, first see the project page <https://github.com/dgroomes/wiremock-playground/projects/1>.
+To contribute, first see the project page <https://github.com/dgroomes/wiremock-playground/projects/1>.
 
 ## Notes
 
-* TODO add some stubs
 * Create a JDK Flight Recording
   * (see `java` options at <https://docs.oracle.com/en/java/javase/14/docs/specs/man/java.html> and scroll down to `-XX:StartFlightRecording`)
   * For the `programmatic` program: 

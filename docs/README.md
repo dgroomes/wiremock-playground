@@ -19,6 +19,7 @@ Instructions:
 
 * Use Java 14
 * Run with `./gradlew programmatic:run`
+* Make a request to a stubbed enpoint with `curl --request GET --url http://localhost:8080/message`
 * Observe the server statistics by going to <http://localhost:8080/stats/> in your browser
   * Statistics include things like the number of responses with 200/300/400/500 status codes, the number of connections,
     and the amount of memory used by the underlying Jetty server.
