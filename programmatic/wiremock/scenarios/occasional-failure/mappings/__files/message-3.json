@@ -1,0 +1,12 @@
+{
+  "scenarioName": "Occasional failure",
+  "requiredScenarioState": "Step3",
+  "newScenarioState": "Started",
+  "request": {
+    "urlPathPattern": "/message(/?)",
+    "method": "GET"
+  },
+  "response": {
+    "fault": "CONNECTION_RESET_BY_PEER"
+  }
+}

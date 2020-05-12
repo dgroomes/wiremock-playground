@@ -14,9 +14,10 @@ import java.time.Instant;
 public class ProgrammaticMain {
 
     private static final Logger log = LoggerFactory.getLogger(ProgrammaticMain.class);
-    private static final int SLEEP_SECONDS = 10;
-    private static final int PORT = 8080;
-    private static final String ROOT_DIR = "wiremock/scenarios/happy-path";
+    private static final int SLEEP_SECONDS = 30;
+    private static final int PORT = 8070;
+//    private static final String ROOT_DIR = "wiremock/scenarios/happy-path";
+    private static final String ROOT_DIR = "wiremock/scenarios/occasional-failure";
 
     public static void main(String[] args) throws InterruptedException {
         var start = Instant.now();

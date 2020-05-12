@@ -1,0 +1,12 @@
+{
+  "scenarioName": "Occasional failure",
+  "requiredScenarioState": "Started",
+  "newScenarioState": "Step2",
+  "request": {
+    "urlPathPattern": "/message(/?)",
+    "method": "GET"
+  },
+  "response": {
+    "body": "hello world!"
+  }
+}
