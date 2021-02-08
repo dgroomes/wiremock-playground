@@ -5,7 +5,7 @@ To contribute, first see the project page <https://github.com/dgroomes/wiremock-
 ## Notes
 
 * Create a JDK Flight Recording
-  * (see `java` options at <https://docs.oracle.com/en/java/javase/14/docs/specs/man/java.html> and scroll down to `-XX:StartFlightRecording`)
+  * (see `java` options at <https://docs.oracle.com/en/java/javase/15/docs/specs/man/java.html> and scroll down to `-XX:StartFlightRecording`)
   * For the `programmatic` program: 
     * Build the distribution with `./gradlew programmatic:installDist`
     * Set the JRE options with `export PROGRAMMATIC_OPTS="-XX:StartFlightRecording,dumponexit=true"`

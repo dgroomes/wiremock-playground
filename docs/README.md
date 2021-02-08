@@ -17,7 +17,7 @@ various configurations. Use it like a recipe book for when you write your own Wi
 
 Instructions:
 
-* Use Java 14
+* Use Java 15
 * Run with `./gradlew programmatic:run`
 * Make a request to a stubbed endpoint with `curl --request GET --url http://localhost:8070/message`
 * Observe the Jetty server statistics by going to <http://localhost:8070/stats/> in your browser
@@ -31,6 +31,6 @@ executable jar and running it. See the official docs at <http://wiremock.org/doc
 
 Instructions:
 
-* Use Java 14
+* Use Java 15
 * Run with `./gradlew standalone:run`
 * Exit with `Ctrl + C`
