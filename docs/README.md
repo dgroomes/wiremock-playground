@@ -21,7 +21,7 @@ various configurations. Use it like a recipe book for when you write your own Wi
 
 Instructions:
 
-* Use Java 15
+* Use Java 11
 * Run with `./gradlew programmatic:run`
 * Make a request to a stubbed endpoint with `curl --request GET --url http://localhost:8070/message`
 * Observe the Jetty server statistics by going to <http://localhost:8070/stats/> in your browser
@@ -35,7 +35,7 @@ executable jar and running it. See the official docs at <http://wiremock.org/doc
 
 Instructions:
 
-* Use Java 15
+* Use Java 11
 * Run with `./gradlew standalone:run`
 * Exit with `Ctrl + C`
 
@@ -43,4 +43,4 @@ Instructions:
 
 General clean-ups, changes and things I wish to implement for this project:
 
-* When Gradle 7.0 is released, upgrade to it and then upgrade to Java 16 (Gradle 6.x does not support Java 16)
+* Create a WireMock-in-Docker example

@@ -9,5 +9,5 @@ dependencies {
 }
 
 application {
-    mainClassName = "dgroomes.wiremock.ProgrammaticMain"
+    mainClass.set("dgroomes.wiremock.ProgrammaticMain")
 }
