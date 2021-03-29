@@ -1,6 +1,10 @@
 # wiremock-playground 
 
-Learning and exploring WireMock.
+📚 Learning and exploring WireMock.
+
+> Mock your APIs for fast, robust and comprehensive testing
+> 
+> -- <cite>http://wiremock.org</cite>
 
 This is a collection of Gradle sub-projects that showcase the excellent HTTP mock server _WireMock_ 
 <http://wiremock.org/docs/>.
@@ -34,3 +38,9 @@ Instructions:
 * Use Java 15
 * Run with `./gradlew standalone:run`
 * Exit with `Ctrl + C`
+
+## Wish List
+
+General clean-ups, changes and things I wish to implement for this project:
+
+* When Gradle 7.0 is released, upgrade to it and then upgrade to Java 16 (Gradle 6.x does not support Java 16)
