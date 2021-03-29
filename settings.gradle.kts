@@ -9,5 +9,6 @@
 
 rootProject.name = "wiremock-playground"
 
-include("programmatic",
+include("dependency-constraints",
+        "programmatic",
         "standalone")

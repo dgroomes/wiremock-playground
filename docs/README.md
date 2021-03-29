@@ -44,3 +44,5 @@ Instructions:
 General clean-ups, changes and things I wish to implement for this project:
 
 * Create a WireMock-in-Docker example
+* DONE create a sub-project that declares dependency constraint versions and which will be used as a `platform(...)`
+  from the other projects. For details of this feature, see the [Gradle docs about "platform"](https://docs.gradle.org/current/userguide/platforms.html)
