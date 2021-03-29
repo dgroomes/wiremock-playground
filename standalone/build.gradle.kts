@@ -3,5 +3,5 @@ dependencies {
 }
 
 application {
-    mainClassName = "com.github.tomakehurst.wiremock.standalone.WireMockServerRunner"
+    mainClass.set("com.github.tomakehurst.wiremock.standalone.WireMockServerRunner")
 }
