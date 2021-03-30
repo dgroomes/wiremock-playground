@@ -16,4 +16,3 @@ configure(allprojects.minus(dependencyConstraints)) {
         "implementation"(platform(dependencyConstraints))
     }
 }
-
