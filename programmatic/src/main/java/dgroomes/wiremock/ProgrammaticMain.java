@@ -16,8 +16,8 @@ public class ProgrammaticMain {
     private static final Logger log = LoggerFactory.getLogger(ProgrammaticMain.class);
     private static final int SLEEP_SECONDS = 30;
     private static final int PORT = 8070;
-//    private static final String ROOT_DIR = "wiremock/scenarios/happy-path";
-    private static final String ROOT_DIR = "wiremock/scenarios/occasional-failure";
+    private static final String ROOT_DIR = "wiremock/scenarios/happy-path";
+//    private static final String ROOT_DIR = "wiremock/scenarios/occasional-failure";
 
     public static void main(String[] args) throws InterruptedException {
         var start = Instant.now();
@@ -25,6 +25,7 @@ public class ProgrammaticMain {
                 .port(PORT);
         WireMockUtil.configureStatistics(options);
         WireMockUtil.configureRootDir(options, ROOT_DIR);
+        WireMockUtil.configureExtensions(options);
         WireMockServer wireMockServer = new WireMockServer(options);
         log.debug("Starting the WireMock server");
         wireMockServer.start();

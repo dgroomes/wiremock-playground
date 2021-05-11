@@ -1,0 +1,11 @@
+{
+  "request": {
+    "urlPathPattern": "/random-integer(/?)",
+    "method": "GET"
+  },
+  "response": {
+    "transformers": [
+      "random-integer-transformer"
+    ]
+  }
+}

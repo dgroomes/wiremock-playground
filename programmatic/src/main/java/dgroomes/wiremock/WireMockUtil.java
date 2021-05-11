@@ -133,4 +133,8 @@ public class WireMockUtil {
 
         options.withRootDirectory(rootDir);
     }
+
+    public static void configureExtensions(WireMockConfiguration options) {
+        options.extensions(new RandomIntegerTransformer());
+    }
 }
