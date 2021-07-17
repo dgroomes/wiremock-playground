@@ -7,28 +7,14 @@ plugins {
     `java-platform`
 }
 
-val wireMockVersion = "2.26.3"
-val junitJupiterVersion = "5.6.0"
-val assertJVersion = "3.15.0"
-val slf4jVersion = "1.7.30"
+val slf4jVersion = "1.7.30" // releases: http://www.slf4j.org/news.html
+val wireMockVersion = "2.29.1" // releases: https://github.com/tomakehurst/wiremock/tags
 
 dependencies {
     constraints {
-        /**
-         * For some reason, using the overloaded method `api(group: String, name: String, version: String)` causes the
-         * Gradle configuration phase to fail with the error "Adding dependencies to platforms is not allowed by default."
-         * So instead I am using the method `api(constraintNotation: String)`. But shouldn't I be able to use the former
-         * method overload? Is this a defect? From the JavaDoc, it actually suggests that the former "adds a dependency"
-         * while the latter "adds a dependency constraint" so that suggests it is not a defect. But from a user perspective,
-         * the method calls convey the same information so I would guess they should do the same thing. But they don't.
-         */
-     // api("com.github.tomakehurst", "wiremock-jre8", wireMockVersion) // This form causes Gradle to fail
-        api("com.github.tomakehurst:wiremock-jre8:$wireMockVersion")    // This form works (and is indeed the form that the official Gradle example uses)
         api("org.slf4j:slf4j-api:$slf4jVersion")
         api("org.slf4j:slf4j-simple:$slf4jVersion")
-        api("com.github.tomakehurst:wiremock-standalone:$wireMockVersion")
-        api("org.assertj:assertj-core:$assertJVersion")
-        api("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
-        api("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
+        api("com.github.tomakehurst:wiremock-jre8:$wireMockVersion")
+        api("com.github.tomakehurst:wiremock-jre8-standalone:$wireMockVersion")
     }
 }

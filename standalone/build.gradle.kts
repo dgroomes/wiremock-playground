@@ -1,5 +1,5 @@
 dependencies {
-    implementation(group = "com.github.tomakehurst", name = "wiremock-standalone")
+    implementation(group = "com.github.tomakehurst", name = "wiremock-jre8-standalone")
 }
 
 application {
