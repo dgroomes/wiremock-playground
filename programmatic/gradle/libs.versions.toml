@@ -1,0 +1,8 @@
+[versions]
+slf4j = "1.7.36" # SLF4J releases: http://www.slf4j.org/news.html
+wire-mock = "2.35.1" # WireMock releases: https://github.com/tomakehurst/wiremock/tags
+
+[libraries]
+wire-mock = { module = "com.github.tomakehurst:wiremock-jre8", version.ref = "wire-mock" }
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }

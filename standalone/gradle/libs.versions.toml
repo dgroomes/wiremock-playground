@@ -1,0 +1,5 @@
+[versions]
+wire-mock = "2.35.1" # WireMock releases: https://github.com/tomakehurst/wiremock/tags
+
+[libraries]
+wire-mock-standalone = { module = "com.github.tomakehurst:wiremock-jre8-standalone", version.ref = "wire-mock" }

@@ -1,5 +1,13 @@
+plugins {
+    application
+}
+
+repositories {
+    mavenCentral()
+}
+
 dependencies {
-    implementation(group = "com.github.tomakehurst", name = "wiremock-jre8-standalone")
+    implementation(libs.wire.mock.standalone)
 }
 
 application {

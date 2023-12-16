@@ -1,7 +1,16 @@
+plugins {
+    java
+    application
+}
+
+repositories {
+    mavenCentral()
+}
+
 dependencies {
-    implementation(group = "com.github.tomakehurst", name = "wiremock-jre8")
-    implementation(group = "org.slf4j", name = "slf4j-api")
-    implementation(group = "org.slf4j", name = "slf4j-simple")
+    implementation(libs.wire.mock)
+    implementation(libs.slf4j.api)
+    implementation(libs.slf4j.simple)
 }
 
 application {
