@@ -1,5 +1,6 @@
 package dgroomes.wiremock;
 
+import com.github.tomakehurst.wiremock.common.HttpsSettings;
 import com.github.tomakehurst.wiremock.common.JettySettings;
 import com.github.tomakehurst.wiremock.core.Options;
 import com.github.tomakehurst.wiremock.core.WireMockApp;
@@ -7,11 +8,10 @@ import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.http.AdminRequestHandler;
 import com.github.tomakehurst.wiremock.http.HttpServer;
 import com.github.tomakehurst.wiremock.http.StubRequestHandler;
-import com.github.tomakehurst.wiremock.jetty9.JettyHttpServerFactory;
-import com.github.tomakehurst.wiremock.jetty94.Jetty94HttpServer;
+import com.github.tomakehurst.wiremock.jetty.JettyHttpServerFactory;
+import com.github.tomakehurst.wiremock.jetty11.Jetty11HttpServer;
 import org.eclipse.jetty.io.ConnectionStatistics;
 import org.eclipse.jetty.io.NetworkTrafficListener;
-import org.eclipse.jetty.server.ConnectionFactory;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.handler.ContextHandlerCollection;
@@ -42,9 +42,9 @@ public class WireMockUtil {
      * 2. Enables graceful shutdown
      */
     public static void configureStatistics(WireMockConfiguration options) {
-        // A stop timeout and a StatisticsHandler are required to enable Jetty to shutdown gracefully.
-        // See the official guide at https://www.eclipse.org/jetty/documentation/current/statistics-handler.html
-        // See the docs at https://www.eclipse.org/jetty/javadoc/9.4.27.v20200227/org/eclipse/jetty/server/Server.html#setStopTimeout(long)
+        // A stop timeout and a StatisticsHandler are required to enable Jetty to shut down gracefully.
+        // See the official guide at https://eclipse.dev/jetty/documentation/jetty-11/programming-guide/index.html#pg-server-http-handler-use-util-stats-handler
+        // See the source code https://github.com/jetty/jetty.project/blob/5a9a771a9fbcb9d36993630850f612581b78c13f/jetty-server/src/main/java/org/eclipse/jetty/server/Server.java#L490
         // See the note at https://github.com/eclipse/jetty.project/issues/2076#issuecomment-353717761
         //
         // But how exactly does it work? Here are some links to dig deeper:
@@ -58,7 +58,7 @@ public class WireMockUtil {
         options.httpServerFactory(new JettyHttpServerFactory() {
             @Override
             public HttpServer buildHttpServer(Options options, AdminRequestHandler adminRequestHandler, StubRequestHandler stubRequestHandler) {
-                return new Jetty94HttpServer(options, adminRequestHandler, stubRequestHandler) {
+                return new Jetty11HttpServer(options, adminRequestHandler, stubRequestHandler) {
 
                     /**
                      * Hook into the handler configuration code and splice in the StatisticsHandler and the
@@ -87,14 +87,19 @@ public class WireMockUtil {
 
                     /**
                      * Enable connector statistics.
-                     *
-                     * See https://www.eclipse.org/jetty/documentation/current/statistics-handler.html#connector-statistics
+                     * <p>
+                     * See <a href="https://www.eclipse.org/jetty/documentation/current/statistics-handler.html#connector-statistics">the Jetty docs</a>.
                      */
                     @Override
-                    protected ServerConnector createServerConnector(String bindAddress, JettySettings jettySettings, int port, NetworkTrafficListener listener, ConnectionFactory... connectionFactories) {
-                        var serverConnector = super.createServerConnector(bindAddress, jettySettings, port, listener, connectionFactories);
+                    protected ServerConnector createHttpConnector(String bindAddress, int port, JettySettings jettySettings, NetworkTrafficListener listener) {
+                        var serverConnector = super.createHttpConnector(bindAddress, port, jettySettings, listener);
                         serverConnector.addBean(new ConnectionStatistics());
                         return serverConnector;
+                    }
+
+                    @Override
+                    protected ServerConnector createHttpsConnector(String s, HttpsSettings httpsSettings, JettySettings jettySettings, NetworkTrafficListener networkTrafficListener) {
+                        throw new IllegalStateException("HTTPS support is not implemented.");
                     }
                 };
             }

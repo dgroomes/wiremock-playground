@@ -1,19 +1,18 @@
 package dgroomes.wiremock;
 
-import com.github.tomakehurst.wiremock.common.FileSource;
 import com.github.tomakehurst.wiremock.extension.Parameters;
-import com.github.tomakehurst.wiremock.extension.ResponseTransformer;
-import com.github.tomakehurst.wiremock.http.Request;
+import com.github.tomakehurst.wiremock.extension.ResponseTransformerV2;
 import com.github.tomakehurst.wiremock.http.Response;
+import com.github.tomakehurst.wiremock.stubbing.ServeEvent;
 
 import java.util.Random;
 
 /**
  * Return a random integer. Optionally, when a "limit" argument is supplied, use that as the exclusive maximum value.
  */
-public class RandomIntegerTransformer extends ResponseTransformer {
+public class RandomIntegerTransformer implements ResponseTransformerV2 {
 
-    private Random random = new Random();
+    private final Random random = new Random();
 
     @Override
     public String getName() {
@@ -25,13 +24,14 @@ public class RandomIntegerTransformer extends ResponseTransformer {
         return false;
     }
 
-    private String template = "{\n" +
-            "  \"random_integer\":" +
-            "  %d\n" +
-            "}";
+    private static final String template = """
+            {
+              "random_integer":  %d
+            }""";
 
     @Override
-    public Response transform(Request request, Response response, FileSource files, Parameters parameters) {
+    public Response transform(Response response, ServeEvent serveEvent) {
+        Parameters parameters = serveEvent.getTransformerParameters();
         if (parameters == null) {
             parameters = new Parameters();
         }

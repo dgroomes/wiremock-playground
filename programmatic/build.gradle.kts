@@ -8,7 +8,7 @@ repositories {
 }
 
 dependencies {
-    implementation(libs.wire.mock)
+    implementation(libs.wiremock)
     implementation(libs.slf4j.api)
     implementation(libs.slf4j.simple)
 }
