@@ -7,9 +7,9 @@ repositories {
 }
 
 dependencies {
-    implementation(libs.wire.mock.standalone)
+    implementation(libs.wiremock.standalone)
 }
 
 application {
-    mainClass.set("com.github.tomakehurst.wiremock.standalone.WireMockServerRunner")
+    mainClass.set("wiremock.Run")
 }

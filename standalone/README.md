@@ -8,11 +8,15 @@ Run WireMock as a standalone process by downloading the executable jar and runni
 Follow these instructions to run the standalone WireMock server.
 
 1. Use Java 17
-2. Run the standalone server
+2. Build the program distribution
     * ```shell
-      ./gradlew run
+      ./gradlew installDist
       ```
-3. When you're done, stop the program with `Ctrl + C`
+3. Run the standalone server
+    * ```shell
+      build/install/standalone/bin/standalone
+      ```
+4. When you're done, stop the program with `Ctrl + C`
 
 
 ## Reference
