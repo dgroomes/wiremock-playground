@@ -7,7 +7,7 @@ Run WireMock as a standalone process by downloading the executable jar and runni
 
 Follow these instructions to run the standalone WireMock server.
 
-1. Use Java 17
+1. Pre-requisite: Java 21
 2. Build the program distribution
     * ```shell
       ./gradlew installDist

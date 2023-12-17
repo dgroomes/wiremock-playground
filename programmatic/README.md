@@ -14,7 +14,7 @@ should know your options.
 
 Follow these instructions to run the example program.
 
-1. Use Java 17
+1. Pre-requisite: Java 21
 2. Build the program distribution
     * ```shell
       ./gradlew installDist

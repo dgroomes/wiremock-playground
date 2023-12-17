@@ -52,7 +52,7 @@ General clean-ups, changes and things I wish to implement for this project:
 * [x] DONE Upgrade dependencies
 * [x] DONE Upgrade to Java 17
 * [x] DONE Upgrade to WireMock 3.0
-* [ ] Upgrade to Java 21?
+* [x] DONE Upgrade to Java 21?
 * [ ] Do something with proxying. Anything I care to have a reference for? Any nice new proxy features in WireMock 3.0?
 * [ ] Add some stubs to the standalone project
 * [ ] Remove the JFR stuff (although interesting; that kind of stuff belongs in other playground repos)
