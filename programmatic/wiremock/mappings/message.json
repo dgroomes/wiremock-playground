@@ -4,6 +4,6 @@
     "method": "GET"
   },
   "response": {
-    "body": "hello world!"
+    "body": "Hello world!"
   }
 }

@@ -1,0 +1,41 @@
+{
+  // This is a particularly rich mapping. We're showing off the following:
+  //
+  //   - WireMock scenarios (stateful behavior)
+  //   - WireMock priority
+  //   - WireMock support for comments in JSON
+  //   - WireMock support for mapping files in sub-directories
+  //
+  // While the official JSON spec doesn't support comments, many JSON parsers and JSON super-sets like JSON5 do support
+  // comments and other niceties. WireMock supports comments in JSON mapping files and this is really useful because we
+  // can add comments to explain what's going on in the mapping. One day, WireMock will recognized and support the
+  // ".json5" file extension which will be useful as a signal to tell the IDE to use a JSON5 parser. Right now, it's
+  // annoying because Intellij is red-lining this comment as invalid JSON. See https://github.com/wiremock/wiremock/pull/2405
+  //
+  // This scenario is designed to simulate the occasional failure of some API. Every fifth request will fail with a network
+  // error. There is actually a defect in WireMock which is causing each state transtition to actually skip forward an extra
+  // step. So, I want the transitions to be "Started" > "Step2" > "Step3" > "Step4" > "Step5" > "Started" etc., but instead
+  // it's doing "Started" > "Step3" > "Step5" > "Step2" > "Step4" > "Started" etc. This used to work but I think there was
+  // a regression probably in 3.x.
+  //
+  // The "priority" field is used to ensure that this mapping is taken instead of the bare "message" mapping.
+  //
+  // We've placed these mappings in a sub-directory named "occasional-failure" to logically separate them from the other
+  // mapping files. This is useful for organization.
+  "priority": 1,
+  "scenarioName": "Occasional failure",
+  "requiredScenarioState": "Started",
+  "newScenarioState": "Step2",
+  "request": {
+    "urlPathPattern": "/message(/?)",
+    "method": "GET",
+    "headers": {
+      "X-Scenario": {
+        "equalTo": "occasional-failure"
+      }
+    }
+  },
+  "response": {
+    "body": "Hello world! (started)"
+  }
+}

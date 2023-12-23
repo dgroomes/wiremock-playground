@@ -1,6 +1,6 @@
 # programmatic
 
-Run a WireMock server programmatically via Java code and with various configurations.
+Run a WireMock server programmatically via Java code and with various mapping features.
 
 
 ## Overview
@@ -40,6 +40,23 @@ Follow these instructions to run the example program.
     * ```shell
       curl --request GET --url http://localhost:8070/random-integer
       ```
+    * ```shell
+      curl http://localhost:8070/message-templated?name=Bluey
+      ```
+    * ```shell
+      curl http://localhost:8070/message-delayed?delay=2
+      ```
+    * ```shell
+      curl --header 'X-Scenario: occasional-failure' http://localhost:8070/message
+      curl --header 'X-Scenario: occasional-failure' http://localhost:8070/message
+      curl --header 'X-Scenario: occasional-failure' http://localhost:8070/message
+      curl --header 'X-Scenario: occasional-failure' http://localhost:8070/message
+      ```
 5. Observe the Jetty server statistics by going to <http://localhost:8070/stats/> in your browser
     * Statistics include things like the number of responses with 200/300/400/500 status codes, the number of connections,
       and the amount of memory used by the underlying Jetty server.
+
+
+## Reference
+
+* [WireMock docs: *Admin API*](https://wiremock.org/docs/standalone/admin-api-reference/)

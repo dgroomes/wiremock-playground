@@ -27,7 +27,7 @@ The subprojects include:
 
 ### `programmatic/`
 
-Run a WireMock server programmatically via Java code and with various configurations.
+Run a WireMock server programmatically via Java code and with various mapping features.
 
 See the README in [programmatic/](programmatic/).
 

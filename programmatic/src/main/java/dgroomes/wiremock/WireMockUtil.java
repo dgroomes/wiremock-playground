@@ -107,33 +107,33 @@ public class WireMockUtil {
     }
 
     /**
-     * Configure a root directory for WireMock to load mappings from. This directory should contain the requisite
-     * "__files/" and "mappings/__files/" directories.
+     * Configure a root directory for WireMock to load mappings from and to find supporting files.
+     * <p>
+     * WireMock offers some configurability for customizing the location of the mappings and the supporting files using
+     * objects like {@link com.github.tomakehurst.wiremock.store.Stores} but some of this support is in flux and is
+     * annotated with {@link org.wiremock.annotations.Beta}. I recommend sticking with the convention of pointing to a
+     * "root" directory which contains two subdirectories: "mappings" and "__files". WireMock hard codes to this convention,
+     * and it's confusing to stray from it. See {@link WireMockApp#MAPPINGS_ROOT} and {@link WireMockApp#FILES_ROOT}.
      */
     public static void configureRootDir(WireMockConfiguration options, String rootDir) {
         var currentDir = new File("").getAbsolutePath();
         var rootDirFile = new File(rootDir);
-        log.debug("Configuring a root directory. Asserting that it exists. Current dir: {}\troot dir: {}", currentDir,
-                rootDir);
+        log.debug("Configuring a root directory. Asserting that it exists. Current dir: '{}'\troot dir: '{}'", currentDir, rootDir);
 
         if (!rootDirFile.exists()) {
-            var msg = String.format("Attempted to configure a WireMock root dir but the directory does not exist! %s",
-                    rootDirFile.getAbsolutePath());
+            var msg = String.format("Attempted to configure a WireMock root dir but the directory does not exist! '%s'", rootDirFile.getAbsolutePath());
             throw new IllegalArgumentException(msg);
         }
 
         var filesDir = new File(rootDirFile, WireMockApp.FILES_ROOT);
         if (!filesDir.exists()) {
-            log.info("WireMock '{}' directory does not exist in the root. Expected to find it at {}. It is not " +
-                    "required but you need to add this directory if your WireMock stubs depend on supporting " +
-                    "files.", WireMockApp.FILES_ROOT, filesDir.getAbsolutePath());
+            log.info("WireMock '{}' directory does not exist in the root. Expected to find it at '{}'. It is not required but you need to add this directory if your WireMock stubs depend on supporting files.", WireMockApp.FILES_ROOT, filesDir.getAbsolutePath());
         }
 
         var mappingsDir = new File(rootDirFile, WireMockApp.MAPPINGS_ROOT);
         if (!mappingsDir.exists()) {
-            throw new IllegalArgumentException(String.format("WireMock '%s' directory does not exist in the root. " +
-                            "Expected to find it at %s. It is required.", WireMockApp.MAPPINGS_ROOT,
-                    mappingsDir.getAbsolutePath()));
+            var msg = String.format("WireMock '%s' directory does not exist in the root. Expected to find it at '%s'. It is expected that user mappings are provided.", WireMockApp.MAPPINGS_ROOT, mappingsDir.getAbsolutePath());
+            throw new IllegalArgumentException(msg);
         }
 
         options.withRootDirectory(rootDir);

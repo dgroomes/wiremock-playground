@@ -1,10 +1,16 @@
 {
+  "priority": 1,
   "scenarioName": "Occasional failure",
-  "requiredScenarioState": "Step3",
+  "requiredScenarioState": "Step5",
   "newScenarioState": "Started",
   "request": {
     "urlPathPattern": "/message(/?)",
-    "method": "GET"
+    "method": "GET",
+    "headers": {
+      "X-Scenario": {
+        "equalTo": "occasional-failure"
+      }
+    }
   },
   "response": {
     "fault": "CONNECTION_RESET_BY_PEER"

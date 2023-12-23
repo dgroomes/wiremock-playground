@@ -1,12 +1,18 @@
 {
+  "priority": 1,
   "scenarioName": "Occasional failure",
   "requiredScenarioState": "Step2",
   "newScenarioState": "Step3",
   "request": {
     "urlPathPattern": "/message(/?)",
-    "method": "GET"
+    "method": "GET",
+    "headers": {
+      "X-Scenario": {
+        "equalTo": "occasional-failure"
+      }
+    }
   },
   "response": {
-    "body": "hello world!"
+    "body": "Hello world! (step 2)"
   }
 }
